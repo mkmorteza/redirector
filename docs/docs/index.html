@@ -1,0 +1,37 @@
+index.html
+<script>
+  const urls = [
+    "https://urbanzy.site",
+    "https://lunexo.website",
+    "https://solvixy.space",
+    "https://zopira.site",
+    "https://zenvoro.xyz"
+  ];
+<!-- force refresh -->
+  let i = 0;
+
+  function tryNext() {
+    if (i >= urls.length) {
+      document.body.innerHTML = "هیچ‌کدوم از سایت‌ها در دسترس نیست.";
+      return;
+    }
+
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = urls[i];
+    document.body.appendChild(iframe);
+
+    let currentUrl = urls[i];
+    i++;
+
+    setTimeout(() => {
+      window.location.href = currentUrl;
+    }, 2000);
+
+    iframe.onerror = () => {
+      tryNext();
+    };
+  }
+
+  tryNext();
+</script>
